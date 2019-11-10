@@ -180,10 +180,13 @@ class SceneMain extends Phaser.Scene {
     );
 
     // Set up gyro
-    window.addEventListener("deviceorientation", function(event){
-      dx = event.beta;
-      dy = event.gamma;
-    }, false);
+    console.log(window.DeviceOrientationEvent);
+    if(window.DeviceOrientationEvent){
+      window.addEventListener("deviceorientation", function(event){
+        dx = event.beta;
+        dy = event.gamma;
+      }, false);
+    }
 
   }
 
