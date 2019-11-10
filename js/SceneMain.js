@@ -1,5 +1,3 @@
-const GyroNorm = require('gyronorm');
-
 var dy = 0;
 var dx = 0;
 
