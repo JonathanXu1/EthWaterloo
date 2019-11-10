@@ -86,7 +86,7 @@ class SceneMain extends Phaser.Scene {
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.pointer = this.input.activePointer;
+    this.pointer = this.input.pointer1;
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
