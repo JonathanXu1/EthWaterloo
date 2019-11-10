@@ -122,7 +122,7 @@ class ChaserShip extends Entity {
         this.y,
         this.scene.player.x,
         this.scene.player.y
-      ) < 32) {
+      ) < 100) {
 
         this.state = this.states.CHASE;
       }
