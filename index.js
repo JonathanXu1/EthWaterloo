@@ -17,12 +17,12 @@ http.listen(process.env.PORT || 5000, function() {
   console.log('listening on port 5000 or server default');
 });
 
-// function resetGame(match) {
-//   var match = celerx.getMatch();
-// seed(match && match.sharedRandomSeed, { global: true });
-// celerx.start();
-// }
+function resetGame(match) {
+  var match = celerx.getMatch();
+seed(match && match.sharedRandomSeed, { global: true });
+celerx.start();
+}
 
-// function endGame() {
-//   celerx.submitScore(STATE.score);
-// }
+function endGame() {
+  celerx.submitScore(STATE.score);
+}
