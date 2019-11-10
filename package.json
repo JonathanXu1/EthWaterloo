@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "gyronorm": "^2.0.6"
+    "gyronorm": "^2.0.6",
+    "seed-random": "^2.2.0"
   },
   "keywords": [
     "node",

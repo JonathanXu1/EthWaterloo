@@ -1,3 +1,5 @@
+//var seed = require('seed-random');
+
 var dy = 0;
 var dx = 0;
 
@@ -30,18 +32,6 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode0", "content/sndExplode0.wav");
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
-
-    // Let Celer know the game is ready
-    //celerx.ready();
-
-    // Request permissions
-    /*
-    navigator.permissions.query({name:'gyroscope'}).then(function(permissionStatus) {
-      console.log('gyroscope permission state is ', permissionStatus.state);
-      permissionStatus.onchange = function() {
-        console.log('gyroscope permission state has changed to ', this.state);
-      };
-    });*/
 
   }
 
@@ -189,14 +179,14 @@ class SceneMain extends Phaser.Scene {
     );
 
     // Set up gyro
-      /*
+    
     console.log(window.DeviceOrientationEvent);
     if(window.DeviceOrientationEvent){
       let window.addEventListener("deviceorientation"), function(event){
         dx = event.beta;
         dy = event.gamma;
       }, false);
-    }*/
+    }
     var gn = new GyroNorm()
     gn.init().then(function(){
       gn.start(function(data){
@@ -206,6 +196,11 @@ class SceneMain extends Phaser.Scene {
       console.log(e);
     })
 
+    // Say ready on celer
+    /*
+    var match = celerx.getMatch();
+    seed(match && match.sharedRandomSeed, { global: true });
+    celerx.start();*/
   }
 
   update(){

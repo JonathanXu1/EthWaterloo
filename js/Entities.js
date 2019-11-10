@@ -94,6 +94,8 @@ class Player extends Entity{
       delay: 1000,
       callback: function() {
         this.scene.scene.start("SceneGameOver");
+        // Game over score submit to celerx
+        //celerx.submitScore(STATE.score);
       },
       callbackScope: this,
       loop: false
