@@ -1,5 +1,6 @@
 //var seed = require('seed-random');
-
+var score = 0;
+var textScore;
 var dy = 0;
 var dx = 0;
 
@@ -103,28 +104,6 @@ class SceneMain extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
-
-    // gn.init();
-
-    // gn.start(function(data) {
-    //   document.getElementById("DebugDisplay").innerHTML = "Gyronorm started";
-    //   if(deg(rad(data.do.beta)).toFixed(0) > 1) {
-    //     moveForward = -1;
-    //     // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
-    //   } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
-    //     moveForward = 1;
-    //   } else {
-    //     moveForward = 0;
-    //   }
-  
-    //   if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
-    //     moveRight = 1;
-    //   } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
-    //     moveRight = -1;
-    //   } else {
-    //     moveRight = 0;
-    //   }
-    // });
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
@@ -237,16 +216,16 @@ class SceneMain extends Phaser.Scene {
     if(!this.player.getData("isDead")){
       this.player.update();
 
-      if (this.keyW.isDown || moveForward > 0) {
+      if (this.keyW.isDown) {
         this.player.moveUp();
       }
-      else if (this.keyS.isDown || moveForward < 0) {
+      else if (this.keyS.isDown) {
         this.player.moveDown();
       }
-      if (this.keyA.isDown || moveRight < 0) {
+      if (this.keyA.isDown) {
         this.player.moveLeft();
       }
-      else if (this.keyD.isDown || moveRight > 0) {
+      else if (this.keyD.isDown) {
         this.player.moveRight();
       }
 
