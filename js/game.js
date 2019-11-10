@@ -3,10 +3,10 @@ var height = Math.max(document.documentElement.clientHeight, window.innerHeight 
 
 var config = {
   type: Phaser.WEBGL,
-  width: 300,
-  height: 600,
+  width: 350,
+  height: 700,
   scale: {
-      mode: Phaser.Scale.ENVELOP,
+      mode: Phaser.Scale.FIT, //Fit or evelop based on device
       autoCenter: Phaser.Scale.CENTER_BOTH
   },
   backgroundColor: "black",
