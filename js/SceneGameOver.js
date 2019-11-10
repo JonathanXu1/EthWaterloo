@@ -13,6 +13,14 @@ class SceneGameOver extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
+    this.scoreDisplay = this.add.text(this.game.config.width * 0.3, 168, "Score: "+score, {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+
     this.backgrounds = [];
     for (var i = 0; i < 5; i++) {
       var keys = ["sprBg0", "sprBg1"];

@@ -1,7 +1,28 @@
-// window.addEventListener("deviceorientation", function(event) {}, true);
-var gn = new GyroNorm();
-const moveForward = 0;
-const moveRight = 0;
+window.addEventListener("deviceorientation", handleOrientation, true);
+
+function handleOrientation(event){
+  if(event.beta > 1) {
+        moveForward = -1;
+        document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
+      } else if (event.beta < -1) {
+        moveForward = 1;
+      } else {
+        moveForward = 0;
+      }
+  
+      if(event.gamma > 90) {
+        moveRight = 1;
+      } else if (event.gamma < 90) {
+        moveRight = -1;
+      } else {
+        moveRight = 0;
+      }
+}
+var moveForward = 0;
+var moveRight = 0;
+
+var textScore;
+var score = 0;
 
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -38,6 +59,7 @@ class SceneMain extends Phaser.Scene {
   }
 
   create() {
+
     this.anims.create({
       key: "sprEnemy0",
       frames: this.anims.generateFrameNumbers("sprEnemy0"),
@@ -95,27 +117,37 @@ class SceneMain extends Phaser.Scene {
     
     this.pointer = this.input.pointer1;
 
-    gn.init();
+    score = 0;
 
-    gn.start(function(data) {
-      document.getElementById("DebugDisplay").innerHTML = "Gyronorm started";
-      if(deg(rad(data.do.beta)).toFixed(0) > 1) {
-        moveForward = -1;
-        // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
-      } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
-        moveForward = 1;
-      } else {
-        moveForward = 0;
-      }
-  
-      if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
-        moveRight = 1;
-      } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
-        moveRight = -1;
-      } else {
-        moveRight = 0;
-      }
+    textScore = this.add.text(this.game.config.width * 0.25, 64, "Score: "+score, {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
     });
+
+    // gn.init();
+
+    // gn.start(function(data) {
+    //   document.getElementById("DebugDisplay").innerHTML = "Gyronorm started";
+    //   if(deg(rad(data.do.beta)).toFixed(0) > 1) {
+    //     moveForward = -1;
+    //     // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
+    //   } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
+    //     moveForward = 1;
+    //   } else {
+    //     moveForward = 0;
+    //   }
+  
+    //   if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
+    //     moveRight = 1;
+    //   } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
+    //     moveRight = -1;
+    //   } else {
+    //     moveRight = 0;
+    //   }
+    // });
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
@@ -167,6 +199,8 @@ class SceneMain extends Phaser.Scene {
         if (enemy) {
           if (enemy.onDestroy !== undefined) {
             enemy.onDestroy();
+            score = score+100;
+            textScore.setText("Score: " + score);
           }
 
           enemy.explode(true);
@@ -181,6 +215,8 @@ class SceneMain extends Phaser.Scene {
         if (enemy) {
           if (enemy.onDestroy !== undefined) {
             enemy.onDestroy();
+            score = score+50;
+            textScore.setText("Score: " + score);
           }
           enemy.explode(true);
         }
@@ -295,6 +331,8 @@ class SceneMain extends Phaser.Scene {
     }
     return arr;
   }
+
+  
 }
 
 
