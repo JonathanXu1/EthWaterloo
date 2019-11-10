@@ -31,20 +31,6 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
 
-    // Set up gyro
-    /*
-    window.addEventListener("deviceorientation", function(event){
-      dx = event.beta;
-      dy = event.gamma;
-    }, false);*/
-
-    let gyroscope = new Gyroscope({frequency: 10});
-    gyroscope.addEventListener('reading', e => {
-      dx = gyroscope.x;
-      dy = gyroscope.y;
-    });
-    gyroscope.start();
-
     // Let Celer know the game is ready
     //celerx.ready();
 
@@ -192,6 +178,13 @@ class SceneMain extends Phaser.Scene {
         }
       }
     );
+
+    // Set up gyro
+    window.addEventListener("deviceorientation", function(event){
+      dx = event.beta;
+      dy = event.gamma;
+    }, false);
+
   }
 
   update(){
