@@ -1,5 +1,5 @@
 // window.addEventListener("deviceorientation", function(event) {}, true);
-
+var gn = new GyroNorm();
 const moveForward = 0;
 const moveRight = 0;
 
@@ -94,6 +94,28 @@ class SceneMain extends Phaser.Scene {
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
     this.pointer = this.input.pointer1;
+
+    gn.init();
+
+    gn.start(function(data) {
+      document.getElementById("DebugDisplay").innerHTML = "Gyronorm started";
+      if(deg(rad(data.do.beta)).toFixed(0) > 1) {
+        moveForward = -1;
+        // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
+      } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
+        moveForward = 1;
+      } else {
+        moveForward = 0;
+      }
+  
+      if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
+        moveRight = 1;
+      } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
+        moveRight = -1;
+      } else {
+        moveRight = 0;
+      }
+    });
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
@@ -276,26 +298,9 @@ class SceneMain extends Phaser.Scene {
 }
 
 
-  if (window.DeviceOrientationEvent) {
-    var gn = new GyroNorm();
-    document.getElementById("DebugDisplay").innerHTML = "Gyronorm initaited";
-    gn.init().then(function(){
-      gn.start(function(data) {
-        if(deg(rad(data.do.beta)).toFixed(0) > 1) {
-          moveForward = -1;
-          // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
-        } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
-          moveForward = 1;
-        } else {
-          moveForward = 0;
-        }
     
-        if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
-          moveRight = 1;
-        } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
-          moveRight = -1;
-        } else {
-          moveRight = 0;
-        }
-      });
-    });}
+    // document.getElementById("DebugDisplay").innerHTML = "Gyronorm initaited";
+    // gn.init().then(function(){
+      // document.getElementById("DebugDisplay").innerHTML = "Gyronorm initaited";
+  
+    // });
