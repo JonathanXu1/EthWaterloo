@@ -35,7 +35,7 @@ class SceneMain extends Phaser.Scene {
     window.addEventListener("deviceorientation", function(event){
       dx = event.beta;
       dy = event.gamma;
-    }, true);
+    }, false);
 
     // Let Celer know the game is ready
     //celerx.ready();
