@@ -1,29 +1,7 @@
-window.addEventListener("deviceorientation", handleOrientation, true);
+//var seed = require('seed-random');
 
-var moveForward = 0;
-var moveRight = 0;
-
-function handleOrientation(event){
-  if(event.beta > 1) {
-        moveForward = -1;
-        document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
-      } else if (event.beta < -1) {
-        moveForward = 1;
-      } else {
-        moveForward = 0;
-      }
-  
-      if(event.gamma > 90) {
-        moveRight = 1;
-      } else if (event.gamma < 90) {
-        moveRight = -1;
-      } else {
-        moveRight = 0;
-      }
-}
-
-var textScore;
-var score = 0;
+var dy = 0;
+var dx = 0;
 
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -55,8 +33,6 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
 
-    // Let Celer know the game is ready
-    //celerx.ready();
   }
 
   create() {
@@ -239,7 +215,22 @@ class SceneMain extends Phaser.Scene {
         }
       }
     );
+
+    // Set up gyro
     
+    console.log(window.DeviceOrientationEvent);
+    if(window.DeviceOrientationEvent){
+      window.addEventListener("deviceorientation", function(event){
+        dx = event.gamma * 10;
+        dy = event.beta * 10;
+      }, false);
+    }
+
+    // Say ready on celer
+    /*
+    var match = celerx.getMatch();
+    seed(match && match.sharedRandomSeed, { global: true });
+    celerx.start();*/
   }
 
   update(){
@@ -258,6 +249,11 @@ class SceneMain extends Phaser.Scene {
       else if (this.keyD.isDown || moveRight > 0) {
         this.player.moveRight();
       }
+
+      // Gyro movement
+      this.player.shiftX(dx);
+      this.player.shiftY(dy);
+
 
       if (this.keySpace.isDown || this.pointer.isDown) {
         this.player.setData("isShooting", true);
