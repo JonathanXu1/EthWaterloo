@@ -1,3 +1,8 @@
+// window.addEventListener("deviceorientation", function(event) {}, true);
+
+const moveForward = 0;
+const moveRight = 0;
+
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMain" });
@@ -86,7 +91,8 @@ class SceneMain extends Phaser.Scene {
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.pointer = this.input.activePointer;
+    
+    this.pointer = this.input.pointer1;
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
@@ -173,22 +179,23 @@ class SceneMain extends Phaser.Scene {
         }
       }
     );
+    
   }
 
   update(){
     if(!this.player.getData("isDead")){
       this.player.update();
 
-      if (this.keyW.isDown) {
+      if (this.keyW.isDown || moveForward < 0) {
         this.player.moveUp();
       }
-      else if (this.keyS.isDown) {
+      else if (this.keyS.isDown || moveForward > 0) {
         this.player.moveDown();
       }
-      if (this.keyA.isDown) {
+      if (this.keyA.isDown || moveRight < 0) {
         this.player.moveLeft();
       }
-      else if (this.keyD.isDown) {
+      else if (this.keyD.isDown || moveRight > 0) {
         this.player.moveRight();
       }
 
@@ -265,4 +272,29 @@ class SceneMain extends Phaser.Scene {
     }
     return arr;
   }
+}
+
+function initiateGyro() {
+  if (window.DeviceOrientationEvent) {
+    var gn = new GyroNorm();
+    
+    gn.init().then(function(){
+      gn.start(function(data) {
+        if(data.do.beta > 0) {
+          const moveForward = 1;
+        } else if (data.do.beta < 0) {
+          const moveForward = -1;
+        } else {
+          const moveForward = 0;
+        }
+    
+        if(data.do.gamma > 0) {
+          const moveRight = 1;
+        } else if (data.do.gamma < 0) {
+          const moveRight = -1;
+        } else {
+          const moveRight = 0;
+        }
+      });
+    });}
 }
