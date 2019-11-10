@@ -34,6 +34,13 @@ class SceneMain extends Phaser.Scene {
     // Let Celer know the game is ready
     //celerx.ready();
 
+    // Request permissions
+    navigator.permissions.query({name:'gyroscope'}).then(function(permissionStatus) {
+      console.log('gyroscope permission state is ', permissionStatus.state);
+      permissionStatus.onchange = function() {
+        console.log('gyroscope permission state has changed to ', this.state);
+      };
+    });
   }
 
   create() {
