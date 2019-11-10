@@ -183,8 +183,8 @@ class SceneMain extends Phaser.Scene {
     console.log(window.DeviceOrientationEvent);
     if(window.DeviceOrientationEvent){
       window.addEventListener("deviceorientation", function(event){
-        dx = event.beta;
-        dy = event.gamma;
+        dx = event.gamma;
+        dy = event.beta;
       }, false);
     }
     var gn = new GyroNorm()
