@@ -1,4 +1,7 @@
 class SceneMain extends Phaser.Scene {
+  dy = 0;
+  dx = 0;
+
   constructor() {
     super({ key: "SceneMain" });
   }
@@ -27,6 +30,12 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode0", "content/sndExplode0.wav");
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
+
+    // Set up gyro
+    window.addEventListener("deviceorientation", function(event){
+      dx = event.beta;
+      dy = event.gamma;
+    }, true);
 
     // Let Celer know the game is ready
     //celerx.ready();
@@ -192,6 +201,10 @@ class SceneMain extends Phaser.Scene {
       else if (this.keyD.isDown) {
         this.player.moveRight();
       }
+
+      // Gyro movement
+      this.player.shiftX(dx);
+      this.player.shiftY(dy);
 
       if (this.keySpace.isDown || this.pointer.isDown) {
         this.player.setData("isShooting", true);

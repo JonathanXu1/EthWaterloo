@@ -54,18 +54,23 @@ class Player extends Entity{
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
   }
-
   moveDown() {
     this.body.velocity.y = this.getData("speed");
   }
-
   moveLeft() {
     this.body.velocity.x = -this.getData("speed");
   }
-
   moveRight() {
     this.body.velocity.x = this.getData("speed");
   }
+
+  shiftX(delta){
+    this.body.velocity.x = delta;
+  }
+  shiftY(delta){
+    this.body.velocity.y = delta;
+  }
+
   update(){
     this.body.setVelocity(0, 0);
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
