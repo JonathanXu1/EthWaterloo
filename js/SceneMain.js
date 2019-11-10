@@ -182,7 +182,7 @@ class SceneMain extends Phaser.Scene {
     
     console.log(window.DeviceOrientationEvent);
     if(window.DeviceOrientationEvent){
-      let window.addEventListener("deviceorientation"), function(event){
+      window.addEventListener("deviceorientation", function(event){
         dx = event.beta;
         dy = event.gamma;
       }, false);
