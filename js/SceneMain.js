@@ -42,7 +42,6 @@ class SceneMain extends Phaser.Scene {
         console.log('gyroscope permission state has changed to ', this.state);
       };
     });*/
-    var gn = new GyroNorm()
 
   }
 
@@ -198,6 +197,7 @@ class SceneMain extends Phaser.Scene {
         dy = event.gamma;
       }, false);
     }*/
+    var gn = new GyroNorm()
     gn.init().then(function(){
       gn.start(function(data){
         console.log(data);
