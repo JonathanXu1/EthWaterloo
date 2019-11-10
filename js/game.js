@@ -1,7 +1,27 @@
+function getWidth() {
+  return Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
+
+function getHeight() {
+  return Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.documentElement.clientHeight
+  );
+}
+
 var config = {
   type: Phaser.WEBGL,
-  width: 480,
-  height: 640,
+  width: getWidth(),
+  height: getHeight(),
   backgroundColor: "black",
   physics: {
     default: "arcade",
