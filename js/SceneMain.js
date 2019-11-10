@@ -1,7 +1,7 @@
-class SceneMain extends Phaser.Scene {
-  dy = 0;
-  dx = 0;
+var dy = 0;
+var dx = 0;
 
+class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMain" });
   }
