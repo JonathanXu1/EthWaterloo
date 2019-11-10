@@ -4,7 +4,7 @@ var height = Math.max(document.documentElement.clientHeight, window.innerHeight 
 var config = {
   type: Phaser.WEBGL,
   width: 300,
-  height: 400,
+  height: 600,
   scale: {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH
