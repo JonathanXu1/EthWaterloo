@@ -1,5 +1,6 @@
-var express=require('express');
-var app=express();
+import express  from "express";
+
+var app = express();
 var http = require('http').Server(app);
 
 app.use('/js', express.static(__dirname+'/js'));

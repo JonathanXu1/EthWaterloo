@@ -1,3 +1,5 @@
+import GyroNorm from 'gyronorm';
+
 var dy = 0;
 var dx = 0;
 
@@ -35,12 +37,12 @@ class SceneMain extends Phaser.Scene {
     //celerx.ready();
 
     // Request permissions
-    navigator.permissions.query({name:'gyroscope'}).then(function(permissionStatus) {
-      console.log('gyroscope permission state is ', permissionStatus.state);
-      permissionStatus.onchange = function() {
-        console.log('gyroscope permission state has changed to ', this.state);
-      };
-    });
+    // navigator.permissions.query({name:'gyroscope'}).then(function(permissionStatus) {
+    //   console.log('gyroscope permission state is ', permissionStatus.state);
+    //   permissionStatus.onchange = function() {
+    //     console.log('gyroscope permission state has changed to ', this.state);
+    //   };
+    // });
   }
 
   create() {
@@ -187,13 +189,23 @@ class SceneMain extends Phaser.Scene {
     );
 
     // Set up gyro
+    const gn = new GyroNorm();
+    gn.init().then(() => {
+      gn.start((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    })
+    /*
     console.log(window.DeviceOrientationEvent);
     if(window.DeviceOrientationEvent){
-      window.addEventListener("deviceorientation", function(event){
+      let window.addEventListener("deviceorientation"), function(event){
         dx = event.beta;
         dy = event.gamma;
       }, false);
-    }
+    }*/
 
   }
 
