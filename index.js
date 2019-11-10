@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 //import seed from 'random-seed';
 //import celerx from './js/celerx';
 
 var express=require('express');
 var app=express();
-=======
-const express = require('express');
-
-var app = express();
->>>>>>> jon
 var http = require('http').Server(app);
 
 app.use('/js', express.static(__dirname+'/js'));
