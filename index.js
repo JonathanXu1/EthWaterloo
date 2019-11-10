@@ -7,6 +7,7 @@ var http = require('http').Server(app);
 
 app.use('/js', express.static(__dirname+'/js'));
 app.use('/content', express.static(__dirname+'/content'));
+app.use('/dist', express.static(__dirname+'/dist'));
 
 app.get('/',function(req,res)
 {

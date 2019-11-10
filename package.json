@@ -12,7 +12,8 @@
     "celerxjs": "^1.0.1",
     "express": "^4.17.1",
     "gyronorm": "^2.0.6",
-    "seed-random": "^2.2.0"
+    "seed-random": "^2.2.0",
+    "webpack-cli": "^3.3.10"
   },
   "keywords": [
     "node",
@@ -20,6 +21,7 @@
     "express"
   ],
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "webpack": "^4.41.2"
   }
 }
