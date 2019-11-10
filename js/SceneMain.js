@@ -1,4 +1,5 @@
 //var seed = require('seed-random');
+//import celerx from 'celerx.js'
 var score = 0;
 var textScore;
 var dy = 0;

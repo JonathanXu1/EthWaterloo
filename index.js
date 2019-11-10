@@ -1,6 +1,6 @@
 //import seed from 'random-seed';
-//import celerx from './js/celerx';
-
+//import celerx from 'celerxjs';
+//var celerx=require('celerxjs');
 var express=require('express');
 var app=express();
 var http = require('http').Server(app);
@@ -16,7 +16,7 @@ app.get('/',function(req,res)
 http.listen(process.env.PORT || 5000, function() {
   console.log('listening on port 5000 or server default');
 });
-
+/*
 function resetGame(match) {
   var match = celerx.getMatch();
 seed(match && match.sharedRandomSeed, { global: true });
@@ -26,3 +26,4 @@ celerx.start();
 function endGame() {
   celerx.submitScore(STATE.score);
 }
+*/

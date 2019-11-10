@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "celerxjs": "^1.0.1",
     "express": "^4.17.1",
     "gyronorm": "^2.0.6",
     "seed-random": "^2.2.0"
@@ -17,5 +18,8 @@
     "node",
     "heroku",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  }
 }
