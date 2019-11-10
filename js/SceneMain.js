@@ -186,10 +186,10 @@ class SceneMain extends Phaser.Scene {
     if(!this.player.getData("isDead")){
       this.player.update();
 
-      if (this.keyW.isDown || moveForward < 0) {
+      if (this.keyW.isDown || moveForward > 0) {
         this.player.moveUp();
       }
-      else if (this.keyS.isDown || moveForward > 0) {
+      else if (this.keyS.isDown || moveForward < 0) {
         this.player.moveDown();
       }
       if (this.keyA.isDown || moveRight < 0) {
@@ -274,27 +274,27 @@ class SceneMain extends Phaser.Scene {
   }
 }
 
-function initiateGyro() {
+
   if (window.DeviceOrientationEvent) {
     var gn = new GyroNorm();
-    
+    document.getElementById("DebugDisplay").innerHTML = "Gyronorm initaited";
     gn.init().then(function(){
       gn.start(function(data) {
-        if(data.do.beta > 0) {
-          const moveForward = 1;
-        } else if (data.do.beta < 0) {
-          const moveForward = -1;
+        if(deg(rad(data.do.beta)).toFixed(0) > 1) {
+          moveForward = -1;
+          // document.getElementById("DebugDisplay").innerHTML = "moveForward = " + moveForward;
+        } else if (deg(rad(data.do.beta)).toFixed(0) < -1) {
+          moveForward = 1;
         } else {
-          const moveForward = 0;
+          moveForward = 0;
         }
     
-        if(data.do.gamma > 0) {
-          const moveRight = 1;
-        } else if (data.do.gamma < 0) {
-          const moveRight = -1;
+        if(deg(rad(data.do.gamma)).toFixed(0) > 90) {
+          moveRight = 1;
+        } else if (deg(rad(data.do.gamma)).toFixed(0) < 90) {
+          moveRight = -1;
         } else {
-          const moveRight = 0;
+          moveRight = 0;
         }
       });
     });}
-}
