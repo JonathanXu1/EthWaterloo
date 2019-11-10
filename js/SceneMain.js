@@ -9,8 +9,6 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("sprBg0", "content/sprBg0.png");
-    this.load.image("sprBg1", "content/sprBg1.png");
     this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -34,6 +32,9 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode0", "content/sndExplode0.wav");
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
+
+    // Let Celer know the game is ready
+    //celerx.ready();
   }
 
   create() {
