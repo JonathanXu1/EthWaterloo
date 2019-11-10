@@ -1,5 +1,8 @@
 window.addEventListener("deviceorientation", handleOrientation, true);
 
+var moveForward = 0;
+var moveRight = 0;
+
 function handleOrientation(event){
   if(event.beta > 1) {
         moveForward = -1;
@@ -18,8 +21,6 @@ function handleOrientation(event){
         moveRight = 0;
       }
 }
-var moveForward = 0;
-var moveRight = 0;
 
 var textScore;
 var score = 0;
