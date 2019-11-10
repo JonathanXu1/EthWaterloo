@@ -3,91 +3,15 @@
   <head>
     <meta content-type= "application/javascript" charset="utf-8">
     <title>Yeet</title>
-    <link ref="stylesheet" src="styles.css"></link>
     <script src="js/phaser.min.js"></script>
-    <script src="https://rawgit.com/dorukeker/gyronorm.js/master/dist/gyronorm.complete.js"></script>
   </head>
   <body>
     <!--<div class="containerDiv" style="height: 100vh; width: 100vw; background-color: red"></div>-->
-    <!-- <h1 style="text-align:center;" id="DebugDisplay">OK</h1> -->
-    <!--<script type= "application/javascript" src="js/celerx.js"></script>
-    <script type= "application/javascript" src="js/gyronorm.complete.min.js"></script>
+    <script type= "application/javascript" src="js/celerx.js"></script>
     <script type= "application/javascript" src="js/Entities.js"></script>
     <script type= "application/javascript" src="js/SceneMainMenu.js"></script>
     <script type= "application/javascript" src="js/SceneMain.js"></script>
     <script type= "application/javascript" src="js/SceneGameOver.js"></script>
-    <script type= "application/javascript" src="js/game.js"></script>-->
-    <div id="root">
-      <div class="garden">
-        <div class="ballRed"></div>
-        <div class="ballBlue"></div>
-        <div class="ballGreen"></div>
-        <div class="ballBlack"></div>
-      </div>
-
-      <pre class="outputRed"></pre>
-      <pre class="outputBlue"></pre>
-      <pre class="outputGreen"></pre>
-    </div>
-
-    <script>
-    function circle(radius, angle) {
-      return [
-        radius * Math.sin(angle),
-        radius * Math.cos(angle),
-      ]
-    }
-
-    function decircle([x, y]) {
-      return [
-        Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)),
-        Math.atan2(x, y),
-      ]
-    }
-
-    function normalizeRadius([x, y], radius) {
-      return circle(radius, decircle([x, y])[1])
-    }
-
-    function rad(deg) {
-      return deg / 180 * Math.PI
-    }
-    function deg(rad) {
-      return rad / Math.PI * 180
-    }
-
-    var red = document.querySelector('.ballRed')
-    var green = document.querySelector('.ballGreen')
-    var blue = document.querySelector('.ballBlue')
-    var black = document.querySelector('.ballBlack')
-
-    var outputRed = document.querySelector('.outputRed')
-    var outputGreen = document.querySelector('.outputGreen')
-    var outputBlue = document.querySelector('.outputBlue')
-
-    function move(ball, [x, y]) {
-      ball.style.top  = `${x + 150}px`
-      ball.style.left = `${y + 150}px`
-    }
-
-    var gn = new GyroNorm()
-
-    gn.init().then(function(){
-      gn.start(function(data){
-        const beta = rad(data.do.beta)
-        const gamma = rad(-data.do.gamma + 90)
-        const gravity = [Math.sin(beta), Math.cos(gamma)].map(v => v * 150)
-        outputGreen.innerHTML = deg(beta).toFixed(0)
-        outputBlue.innerHTML = deg(gamma).toFixed(0)
-        move(green, circle(140, beta))
-        move(blue, circle(140, gamma))
-        move(red, gravity)
-        move(black, normalizeRadius(gravity, 160))
-      })
-    }).catch(function() {
-      outputBlue.innerHTML = "Gyroscope not supported!"
-      outputGreen.innerHTML = "That's so lame :("
-    })
-    </script>
+    <script type= "application/javascript" src="js/game.js"></script>
   </body>
 </html>
