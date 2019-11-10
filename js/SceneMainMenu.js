@@ -17,6 +17,7 @@ class SceneMainMenu extends Phaser.Scene {
   }
 
   create() {
+    /*
     this.sfx = {
       btnOver: this.sound.add("sndBtnOver"),
       btnDown: this.sound.add("sndBtnDown")
@@ -48,11 +49,20 @@ class SceneMainMenu extends Phaser.Scene {
       this.btnPlay.setTexture("sprBtnPlay");
       this.scene.start("SceneMain");
     }, this);
-
+    */
 
     this.title = this.add.text(this.game.config.width * 0.5, 128, "SPACE SHOOTER", {
       fontFamily: 'monospace',
       fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.title.setOrigin(0.5);
+
+    this.title = this.add.text(this.game.config.width * 0.5, 160, "Connecting...", {
+      fontFamily: 'monospace',
+      fontSize: 18,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center'
@@ -66,6 +76,11 @@ class SceneMainMenu extends Phaser.Scene {
       var bg = new ScrollingBackground(this, key, i * 10);
       this.backgrounds.push(bg);
     }
+
+    // Wait on CelerX
+    celerx.onStart(function(){
+      this.scene.start("SceneMain");
+    });
   }
 
   update() {

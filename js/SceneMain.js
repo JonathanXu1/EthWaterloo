@@ -1,9 +1,9 @@
 //var seed = require('seed-random');
-//import celerx from 'celerx.js'
 var score = 0;
 var textScore;
 var dy = 0;
 var dx = 0;
+var match;
 
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -207,10 +207,7 @@ class SceneMain extends Phaser.Scene {
     }
 
     // Say ready on celer
-    /*
-    var match = celerx.getMatch();
-    seed(match && match.sharedRandomSeed, { global: true });
-    celerx.start();*/
+    celerx.ready();
   }
 
   update(){
