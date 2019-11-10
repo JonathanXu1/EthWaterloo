@@ -37,12 +37,15 @@ class SceneMain extends Phaser.Scene {
     //celerx.ready();
 
     // Request permissions
+    /*
     navigator.permissions.query({name:'gyroscope'}).then(function(permissionStatus) {
       console.log('gyroscope permission state is ', permissionStatus.state);
       permissionStatus.onchange = function() {
         console.log('gyroscope permission state has changed to ', this.state);
       };
-    });
+    });*/
+    var gn = new GyroNorm()
+
   }
 
   create() {
@@ -189,13 +192,21 @@ class SceneMain extends Phaser.Scene {
     );
 
     // Set up gyro
+      /*
     console.log(window.DeviceOrientationEvent);
     if(window.DeviceOrientationEvent){
       let window.addEventListener("deviceorientation"), function(event){
         dx = event.beta;
         dy = event.gamma;
       }, false);
-    }
+    }*/
+    gn.init().then(function(){
+      gn.start(function(data){
+        console.log(data);
+      })
+    }).catch(function(e) {
+      console.log(e);
+    })
 
   }
 
