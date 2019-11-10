@@ -3,7 +3,6 @@ var score = 0;
 var textScore;
 var dy = 0;
 var dx = 0;
-var match;
 
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -206,8 +205,6 @@ class SceneMain extends Phaser.Scene {
       }, false);
     }
 
-    // Say ready on celer
-    celerx.ready();
   }
 
   update(){

@@ -1,3 +1,5 @@
+var match;
+
 class SceneMainMenu extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMainMenu" });
@@ -77,8 +79,11 @@ class SceneMainMenu extends Phaser.Scene {
       this.backgrounds.push(bg);
     }
 
+    // Say ready on celer
+    celerx.ready();
     // Wait on CelerX
     celerx.onStart(function(){
+      match = celerx.getMatch();
       this.scene.start("SceneMain");
     });
   }
