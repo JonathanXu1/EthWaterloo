@@ -155,7 +155,15 @@ class SceneMain extends Phaser.Scene {
         if (enemy) {
           if (enemy.onDestroy !== undefined) {
             enemy.onDestroy();
-            score = score+100;
+            if(enemy.getData("type") == "GunShip"){
+              score = score + 50;
+            }
+            if (enemy.getData("type") == "CarrierShip"){
+              score = score + 25;
+            }
+            if(enemy.getData("type") == "ChaserShip"){
+              score = score + 75;
+            }
             textScore.setText("Score: " + score);
           }
 
@@ -171,8 +179,6 @@ class SceneMain extends Phaser.Scene {
         if (enemy) {
           if (enemy.onDestroy !== undefined) {
             enemy.onDestroy();
-            score = score+50;
-            textScore.setText("Score: " + score);
           }
           enemy.explode(true);
         }

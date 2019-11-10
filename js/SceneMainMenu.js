@@ -82,10 +82,12 @@ class SceneMainMenu extends Phaser.Scene {
     // Say ready on celer
     celerx.ready();
     // Wait on CelerX
-    celerx.onStart(function(){
-      match = celerx.getMatch();
-      this.scene.start("SceneMain");
-    });
+    celerx.onStart(this.startGame());
+  }
+
+  startGame(){
+    match = celerx.getMatch();
+    this.scene.start("SceneMain");
   }
 
   update() {
